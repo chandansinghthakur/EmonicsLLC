@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update status</title>
+    <div class="navbar" class="btns">
+        <a class="btn-1" href="{{ url_for('home') }}" style="font-size:1vw;">Home</a>
+        <a class="btn-6" href="{{ url_for('database_entry_form') }}" style="font-size:1vw;">Insert data</a>
+    </div>
+</head>
+<body>
+    <style>
+        form {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+    }
+    label {
+    font-weight: bold;
+    }
+
+        input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=date], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=value], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=email], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+        input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+
+        input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+        div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+    .required {
+    border: 2px solid red;
+    }
+
+    .btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    flex-direction: row;  
+}
+.btn-1{
+    color: #03e9f4;
+    border-radius: 7px;  
+}
+.btn-1:hover{
+    background-color: #03e9f4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-2{
+    color: #e100ff;
+    border-radius: 7px;  
+}
+.btn-2:hover{
+    background-color: #e100ff;
+    color: #050801;
+    box-shadow: 0px 0px 5px #e100ff, 0px 0px 25px #e100ff, 0px 0px 50px #e100ff, 0px 0px 100px #e100ff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-3{
+    color: #03e9f4;
+    border-radius: 7px;  
+}
+.btn-3:hover{
+    background-color: #03e9f4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-4{
+    color: #e100ff;
+    border-radius: 7px;  
+}
+.btn-4:hover{
+    background-color: #e100ff;
+    color: #050801;
+    box-shadow: 0px 0px 5px #e100ff, 0px 0px 25px #e100ff, 0px 0px 50px #e100ff, 0px 0px 100px #e100ff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-5{
+    color: #03e9f4;
+    border-radius: 7px;  
+}
+.btn-5:hover{
+    background-color: #03e9f4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-6{
+    color: #e100ff;
+    border-radius: 7px;  
+}
+.btn-6:hover{
+    background-color: #e100ff;
+    color: #050801;
+    box-shadow: 0px 0px 5px #e100ff, 0px 0px 25px #e100ff, 0px 0px 50px #e100ff, 0px 0px 100px #e100ff;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-7{
+    color: #ff0000;
+    border-radius: 7px;  
+}
+.btn-7:hover{
+    background-color: #ff0000;
+    color: #050801;
+    box-shadow: 0px 0px 5px #ff0000, 0px 0px 25px #ff0000, 0px 0px 50px #ff0000, 0px 0px 100px #ff0000;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+    </style>
+
+
+    <div class="container">
+        <h1>Update status of Employees in Database</h1>
+        <form method="POST" action="/Update" onsubmit="return showConfirmation()">
+            <table>
+                <tr>
+                    <td><label for="Emp_status">Emp_status</label><br><br></td>
+                    <td><input type="text" id="Emp_status" name="Emp_status" placeholder="Live/Left" required ><br><br></td>
+                    <td><label for="DOL">DOL</label><br><br></td>
+                    <td><input type="date" id="date" name="DOL" required><br><br></td>
+                    <td><label for="Email_id">Email_id</label><br><br></td>
+                    <td><input type="email" id="Email_id" name="Email_id" placeholder="email id" required><br><br></td>
+                    <td><label for="Emp_code">Emp_code</label><br><br></td>
+                    <td><input type="text" id="Emp_code" name="Emp_code" placeholder="Emp_code id" required><br><br></td>
+                </tr>
+                <tr>
+                    <td><label for="Remark">Remark</label><br><br></td>
+                    <td><textarea id="Remark" name="Remark" rows="4" cols="50" placeholder="Remark..."></textarea><br><br></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Update" style="font: size 1.5em;">
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <script>
+            function showConfirmation() {
+                var confirmation = confirm("Do you want to update the data?");
+                return confirmation;
+            }
+        </script>
+
+    </div>
+</body>
+</html>

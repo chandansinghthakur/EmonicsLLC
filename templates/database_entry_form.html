@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Form with CSS Style</title>
+</head>
+<body>
+    <style>
+        form {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        color: #333;
+    }
+    label {
+    font-weight: bold;
+    }
+
+        input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=date], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=value], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=email], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+        input[type=submit] {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+
+        input[type=submit]:hover {
+        background-color: #45a049;
+    }
+
+        div {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+    }
+
+    .navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+    .required {
+    border: 2px solid red;
+    }
+
+    .button {
+    background-color: #bbc0bc;
+    border: none;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition: 0.3s;
+}
+.btns{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    flex-direction: row; 
+} 
+
+.btn-1{
+    color: #03e9f4;
+    border-radius: 7px;  
+}
+.btn-1:hover{
+    background-color: #03e9f4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+.btn-6{
+    color: #03e9f4;
+    border-radius: 7px;  
+}
+.btn-6:hover{
+    background-color: #03e9f4;
+    color: #050801;
+    box-shadow: 0px 0px 5px #03e9f4, 0px 0px 25px #03e9f4, 0px 0px 50px #03e9f4, 0px 0px 100px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005); 
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #000000;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+    position: relative;
+    font-family: Arial;
+}
+
+.custom-select select {
+    display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+    background-color: DodgerBlue;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+    color: #ffffff;
+    padding: 8px 16px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+    user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+    </style>
+
+    <header>
+        <div class="navbar" class="btns">
+            <a class="btn-6" href="{{ url_for('home') }}" style="font-size:1vw;">Home</a>
+            <a class="btn-1" href="{{ url_for('page1') }}" style="font-size:1vw;">Dashboard</a>
+            <a class="btn-2" href="{{ url_for('index') }}" style="font-size:1vw;">Total Employees</a>
+            <a class="btn-3" href="{{ url_for('about') }}" style="font-size:1vw;">Live Employees</a>
+            <a class="btn-4" href="{{ url_for('summary') }}" style="font-size:1vw;">Live Emp 1</a>
+            <a class="btn-5" href="{{ url_for('sep') }}" style="font-size:1vw;">Separated Emp</a>
+            <a class="btn-7" href="{{ url_for('update_status') }}" style="font-size:1vw;">Update Record</a>
+            <a class="btn-7" href="/logout" style="font-size:1vw; float:right;">Logout</a>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <h1>Insert Data into Database</h1>
+        <form method="POST" id="myForm" onsubmit="return showConfirmation()">
+            <table>
+                <tr>
+                    <td><label for="Emp_status">Emp_status: </label><br><br></td>
+                    <td><input type="text" id="Emp_status" name="Emp_status" required><br><br></td>
+                    <td><label for="Working_status">Working_status:</label><br><br></td>
+                    <td><input type="text" id="Working_status" name="Working_status" required><br><br></td>
+                    <td><label for="DOJ">DOJ:</label><br><br></td>
+                    <td><input type="date" id="date" name="DOJ" required><br><br></td>
+                    <td><label for="Emp_code">Emp_code:</label><br><br></td>
+                    <td><input type="text" id="Emp_code" name="Emp_code" required><br><br></td>
+                </tr>
+                <tr>
+                    <td><label for="User_name">User_name:</label><br><br></td>
+                    <td><input type="text" id="User_name" name="User_name" required><br><br></td>
+                    <td><label for="Reporting_manager">Reporting_manager:</label><br><br></td>
+                    <td><input type="text" id="Reporting_manager" name="Reporting_manager" required><br><br></td>
+
+                    <td><label for="Division">Division:</label><br><br></td>
+                    <td><input type="text" id="Division" name="Division" required><br><br></td>
+                    <td><label for="Designation">Designation:</label><br><br></td>
+                    <td><input type="text" id="Designation" name="Designation" required><br><br></td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="Email_id">Email_id:</label><br><br></td>
+                    <td><input type="email" id="Email_id" name="Email_id" required><br><br></td>
+                    <td><label for="Assigned_ATS">Assigned_ATS:</label><br><br></td>
+                    <td><input type="text" id="Assigned_ATS" name="Assigned_ATS" required><br><br></td>
+                    <td><label for="Primary_Extn_Number">Primary_Extn_Number:</label><br><br></td>
+                    <td><input type="value" id="Primary_Extn_Number" name="Primary_Extn_Number" required><br><br></td>
+                    <td><label for="Primary_Vonage_Number">Primary_Vonage_Number:</label></td>
+                    <td><input type="value" id="Primary_Vonage_Number" name="Primary_Vonage_Number" required><br><br></td>
+                </tr>
+                <tr>
+                    
+                    <td><label for="Department">Department:</label><br><br></td>
+                    <td><input type="text" id="Department" name="Department" required><br><br></td>
+                    <td><label for="Personal_Number">Personal_Number:</label><br><br></td>
+                    <td><input type="value" id="Personal_Number" name="Personal_Number" required><br><br></td>
+                    <td><label for="Personal_Email_ID">Personal_Email_ID:</label><br><br></td>
+                    <td><input type="email" id="Personal_Email_ID" name="Personal_Email_ID" required><br><br></td>
+                </tr>
+                <tr>
+                    <td><label for="TEAM">TEAM:</label><br><br></td>
+                    <td><input type="text" id="TEAM" name="TEAM" required><br><br></td>
+                    <td><label for="Super_Team">Super_Team:</label><br><br></td>
+                    <td><input type="text" id="Super_Team" name="Super_Team" required><br><br></td>
+                    <td><label for="Gender">Gender:</label><br><br></td>
+                    <td><input type="text" id="Gender" name="Gender" required><br><br></td>
+                </tr>
+                <tr>
+                    <td><br><br></td>
+                    <td><br><br></td>
+                    <td><br><br></td>
+                    <td><br><br></td>
+                    <td>
+                    <input type="submit" value="Insert" style="font-size:1vw;">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <script>
+        function showConfirmation() {
+            var confirmation = confirm("Do you want to insert the data?");
+            return confirmation;
+        }
+    </script>
+</body>
+</html>

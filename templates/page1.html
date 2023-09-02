@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1 style="font-size:3vw;">Dashboard</h1>
+
+    <a href="{{ url_for('home') }}"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Apple_Home_%28iOS%29.png" width="50" height="50"></a>
+    <button class="button"><a href="{{ url_for('index') }}">Total Employees</a></button>
+    <button class="button"><a href="{{ url_for('about') }}">Live Employees</a></button>
+    <button class="button"><a href="{{ url_for('summary') }}">Live Emp 1</a></button>
+    <button class="button"><a href="{{ url_for('sep') }}">Separated Employees</a></button>
+    <style>
+    @import url(https://fonts.googleapis.com/css?family=PT+Sans);
+*, *:after, *:before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #ffffff;
+    color: #f50303;
+    text-align: center;
+    padding: 1px;
+}
+
+body{
+    font-family: 'PT Sans', sans-serif; 
+    display: table;
+    width: 100%;
+    background: #ffffff;
+}
+
+.container{
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    height: 20vh;
+    color: #000000;
+}
+
+/* Dropdown Button */
+.dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #f1e184;}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {display: block;}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(2, 2, 2);
+    color: white;
+    text-align: center;
+    padding: auto;
+}
+
+.navbar {
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+table {
+    overflow:hidden;
+    th, td {
+        padding:.25em .5em;
+        text-align:left;
+        vertical-align:top;
+    }
+    th {
+        background-color:#009;
+        color:#fff;
+    }
+    td {
+        background-color:#eee;
+    }
+    tr, td {
+        transition:all 1s ease-in-out;
+        &.slide-out {
+        transform:rotateX(90deg);
+        }
+    }
+}
+
+        th, td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap;
+        border-style: outset;
+        border-color: #ffffff;
+        border-width: medium;
+        color: #ffffff;
+    }
+    th {
+    background-color: #000000;
+    top: 0;
+    position: sticky;
+    font-weight: bolder;
+    color: #fff;
+}
+    </style>
+
+<table class="zig-zag" >
+    <thead>
+        <tr>
+            <th style="background-color: #05744b;">Header Name</th>
+            <th style="text-align: center; background-color: #05744b">Values</th>
+            <th style="background-color: #031b5e;">Header Name</th>
+            <th style="text-align: center; background-color: #031b5e;">Values</th>
+            <th style="background-color: #750404;">SI Name</th>
+            <th style="text-align: center; background-color: #750404;">Values</th>
+            <th style="background-color: #5e0266;">Healthcare Name</th>
+            <th style="text-align: center; background-color: #5e0266;">Values</th>
+            <th style="background-color: #056468;">BenchSales Name</th>
+            <th style="text-align: center; background-color: #056468;">Values</th>
+        </tr>
+        
+    </thead>
+    <tbody>
+        {% for row in data %}
+        <tr>
+            <td style="background-color: #04AA6D;">Live_Employees</td>
+            <td style="text-align: center; background-color: #04AA6D;">{{ row.Live_Employees }}</td>
+            <td style="background-color: #0430aa;">Recruiter</td>
+            <td style="text-align: center; background-color: #0430aa;">{{ row.Recruiter }}</td>
+            <td style="background-color: #aa0404;">SI_Recruiter</td>
+            <td style="text-align: center; background-color: #aa0404;">{{ row.SI_Recruiter }}</td>
+            <td style="background-color: #9c04aa;">Healthcare_Recruiter</td>    
+            <td style="text-align: center; background-color: #9c04aa;">{{ row.Healthcare_Recruiter }}</td>
+            <td style="background-color: #04a5aa;">Bench_Sales_Recruiter</td>
+            <td style="text-align: center; background-color: #04a5aa;">{{ row.Bench_Sales_Recruiter }}</td>
+            
+        </tr>
+        <tr><td style="background-color: #04AA6D;">WFH</td>
+            <td style="text-align: center; background-color: #04AA6D;">{{ row.WFH }}</td>
+            <td style="background-color: #0430aa;">Account_Manager</td>
+            <td style="text-align: center;background-color: #0430aa;">{{ row.Account_Manager }}</td>
+            <td style="background-color: #aa0404;">SI_Account_Manager</td>
+            <td style="text-align: center; background-color: #aa0404;">{{ row.SI_Account_Manager }}</td>
+            <td style="background-color: #9c04aa;">Healthcare_Account_Manager</td>
+            <td style="text-align: center; background-color: #9c04aa;">{{ row.Healthcare_Account_Manager }}</td>
+            <td style="background-color: #04a5aa;">Bench_Account_Manager</td>
+            <td style="text-align: center; background-color: #04a5aa;">{{ row.Bench_Account_Manager }}</td>
+            
+            
+        </tr>
+        <tr><td style="background-color: #04AA6D;">WFO</td>
+            <td style="text-align: center; background-color: #04AA6D;">{{ row.WFO }}</td>
+            <td style="background-color: #0430aa;">Support</td>
+            <td style="text-align: center; background-color: #0430aa;">{{ row.Support }}</td>
+            <td></td>
+            <td></td>
+            <td style="background-color: #9c04aa;">Healthcare_Support</td>
+            <td style="text-align: center; background-color: #9c04aa;">{{ row.Healthcare_Support }}</td>
+            <td style="background-color: #04a5aa;">Bench_Sales</td>
+            <td style="text-align: center; background-color: #04a5aa;">{{ row.Bench_Sales }}</td>
+            
+        </tr>
+        <tr><td style="background-color: #04AA6D;">Male</td>
+            <td style="text-align: center; background-color: #04AA6D;">{{ row.Male }}</td>
+        </tr>
+        <tr><td style="background-color: #04AA6D;">Female</td>
+            <td style="text-align: center; background-color: #04AA6D;">{{ row.Female }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    const rows = Array.from(document.querySelectorAll('tr'));
+
+    function slideOut(row) {
+        row.classList.add('slide-out');
+    }
+
+    function slideIn(row, index) {
+        setTimeout(function() {
+            row.classList.remove('slide-out');
+    }, (index + 5) * 200);  
+    }
+
+    rows.forEach(slideOut);
+
+    rows.forEach(slideIn);
+</script>
+
+<div class="footer">
+    <p>Created by Chandan Thakur</p>
+</div>
+</body>
+</html>

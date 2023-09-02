@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees table with required info</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+
+    <style>
+        th, td {
+        padding: 10px;
+        text-align: left;
+        white-space: nowrap;
+        border-style: outset;
+        border-color: #ffffff;
+        border-width: medium;
+        color: #000000;
+    }
+    th {
+    background-color: #000000;
+    top: 0;
+    position: sticky;
+    font-weight: bolder;
+    color: #fff;
+    }
+    </style>
+
+    <h1>Separated Employees</h1>
+
+    <a href="{{ url_for('home') }}"> <img src="https://upload.wikimedia.org/wikipedia/commons/a/a6/Apple_Home_%28iOS%29.png" width="50" height="50"></a>
+    <button class="button"><a href="{{ url_for('page1') }}">Dashboard</a></button>
+    <button class="button"><a href="{{ url_for('index') }}">Total Employees</a></button>
+    <button class="button"><a href="{{ url_for('about') }}">Live Employees</a></button>
+    <button class="button"><a href="{{ url_for('summary') }}">Live Emp 1</a></button>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <form action="">
+        <input type="text" id="searchBar" placeholder="Search here ...">
+        <i class="fa fa-search"></i>
+    </form>
+    <table id="data-table" style="float:left">
+        <thead>
+            <tr>
+                <th>DOJ</th>
+                <th>DOL</th>
+                <th>Emp_code</th>
+                <th>User_name</th>
+                <th>Reporting_manager</th>
+                <th>Division</th>
+                <th>Designation</th>
+                <th>Email_id</th>
+                <th>Primary_Extn_Number</th>
+                <th>Primary_Vonage_Number</th>
+                <th>Gender</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.DOJ }}</td>
+                <td>{{row.DOL }}</td>
+                <td>{{ row.Emp_code }}</td>
+                <td>{{ row.User_name }}</td>
+                <td>{{ row.Reporting_manager }}</td>
+                <td>{{ row.Division }}</td>
+                <td>{{ row.Designation }}</td>
+                <td>{{ row.Email_id }}</td>
+                <td>{{ row.Primary_Extn_Number }}</td>
+                <td>{{ row.Primary_Vonage_Number }}</td>
+                <td>{{ row.Gender }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        const searchBar = document.getElementById('searchBar');
+        const table = document.getElementById('data-table');
+        const rows = table.getElementsByTagName('tr');
+
+        searchBar.addEventListener('input', function() {
+            const filter = searchBar.value.toLowerCase();
+
+            for (let i = 1; i < rows.length; i++) {
+                const rowData = rows[i].getElementsByTagName('td');
+                let rowMatches = false;
+
+                for (let j = 0; j < rowData.length; j++) {
+                    const cellData = rowData[j].textContent.toLowerCase();
+                    if (cellData.includes(filter)) {
+                        rowMatches = true;
+                        break;
+                    }
+                }
+
+                rows[i].style.display = rowMatches ? '' : 'none';
+            }
+        });
+    </script>
+
+<div class="footer">
+    <p>Created by Chandan Thakur</p>
+</div>
+</body>
+</html>
